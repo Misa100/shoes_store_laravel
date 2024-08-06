@@ -9,7 +9,7 @@
             <tr>
                 <th>Nom</th>
                 <th>Prix</th>
-                <th>Actions</th>
+                <th>Images</th>
             </tr>
         </thead>
         <tbody>
