@@ -11,10 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('messages', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('message')) {
+            Schema::create('message', function (Blueprint $table) {
+                $table->id();
+                $table->string('name',200);
+                $table->string('email',200);
+                $table->string('number',200);
+                $table->text('message');
+                $table->integer('user_id');
+                $table->timestamps();
+            });
+        }
     }
 
     /**
