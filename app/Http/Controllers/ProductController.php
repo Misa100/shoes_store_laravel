@@ -21,7 +21,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('products.create'); // Assurez-vous que cette vue existe
     }
 
     /**
@@ -29,9 +29,23 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        // Validation des données
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:200',
+            'price' => 'required|integer',
+            'image' => 'nullable|string|max:100',
+        ]);
 
+        // Création d'un nouveau produit
+        $product = new Products;
+        $product->name = $validatedData['name'];
+        $product->price = $validatedData['price'];
+        $product->image = $validatedData['image']; // Ici vous pouvez également gérer le téléchargement d'images
+        $product->save();
+
+        // Redirection après la sauvegarde
+        return redirect()->route('products.index')->with('success', 'Produit ajouté avec succès.');
+    }
     /**
      * Display the specified resource.
      */

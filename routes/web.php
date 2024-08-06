@@ -15,6 +15,10 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 // Routes pour les produits
 Route::resource('products', ProductController::class);
 
+Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
+
+Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+
 // Routes pour les messages
 Route::resource('messages', MessageController::class);
 
